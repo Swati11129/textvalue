@@ -1,17 +1,21 @@
 <template>
   <v-container>
     <div
-      style="font-size: 30px; font-weight: 700; cursor: pointer"
-      :style="colorValueProps"
-      @click="valueClickable"
+      :style="{
+        'font-size' : '30px',
+        'font-weight': '700',
+        cursor: propsData.clickable ? 'pointer' : 'default',
+        color: propsData.color || (propsData.clickable ? '#0000EE' : ''),
+      }"
+      @click="valueClick"
     >
-      {{ propsTextValueData.value }}
+    {{ propsData.value }}
     </div>
     <div class="d-flex">
-      <div style="font-size: 16px">{{ propsTextValueData.text }}</div>
-        <div v-if="propsTextValueData.tooltip">
-          <v-icon >mdi-alpha-i-circle</v-icon>
-        </div>
+      <div style="font-size: 16px">{{ propsData.text }}</div>
+      <div v-if="propsData.tooltip">
+        <v-icon>mdi-alpha-i-circle</v-icon>
+      </div>
     </div>
   </v-container>
 </template>
@@ -20,27 +24,16 @@
 export default {
   name: "TextValue",
   props: {
-    propsTextValueData: {
+    propsData: {
       type: Object,
     },
   },
-  computed: {
-    colorValueProps() {
-      const valueColor = {
-        color: this.propsTextValueData.color,
-      };
-      if (!this.propsTextValueData.color && this.propsTextValueData.clickable) {
-        valueColor.color = "#0000EE";
-      }
-      return valueColor;
-    },
-  },
   methods: {
-    valueClickable(){
-      if(this.propsTextValueData.clickable){
-        this.$emit('valueClicked',this.propsTextValueData.value)
+    valueClick() {
+      if (this.propsData.clickable) {
+        this.$emit("valueClicked", this.propsData.value);
       }
-    }
+    },
   },
 };
 </script>

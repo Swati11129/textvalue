@@ -17,7 +17,7 @@ export default {
         value: '1,838',
         text: 'Low coverage: Under 75% code coverage',
         color: 'red',
-        clickable:true,
+        clickable:false,
         tooltip:true,
       }
     };

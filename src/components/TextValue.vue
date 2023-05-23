@@ -2,7 +2,7 @@
   <v-container>
     <div
       :style="{
-        fontSize: propsData.valueFontSize,
+        fontSize: propsData.valueFontSize ||'30px',
         'font-weight': '700',
         color: propsData.valueColor,
       }"
@@ -51,6 +51,7 @@
         <v-icon v-show="!showTooltipContent">mdi-alpha-i-circle</v-icon>
         <div v-show="showTooltipContent">{{ propsData.tooltip }}</div>
       </div>
+
     </div>
   </v-container>
 </template>

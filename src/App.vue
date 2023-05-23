@@ -14,13 +14,13 @@ export default {
    data() {
     return {
       Data: {
-        value: '1,838',
+        value: '$ 4',
         text: 'Low coverage: Under 75% code coverage',
         valueColor: '',
         textColor: 'green',
         valueClickable: true,
-        textClickable:true,
-        valueFontSize:'30px',
+        textClickable:false,
+        valueFontSize:'',
         tooltip:'tooltip info',
       }
     };

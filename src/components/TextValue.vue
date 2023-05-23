@@ -2,19 +2,54 @@
   <v-container>
     <div
       :style="{
-        'font-size' : '30px',
+        fontSize: propsData.valueFontSize,
         'font-weight': '700',
-        cursor: propsData.clickable ? 'pointer' : 'default',
-        color: propsData.color || (propsData.clickable ? '#0000EE' : ''),
+        color: propsData.valueColor,
       }"
-      @click="valueClick"
     >
-    {{ propsData.value }}
+      <div
+        v-if="propsData.valueClickable"
+        @click="valueClick"
+        :style="{
+          cursor: 'pointer',
+          color: propsData.valueColor || '#0000EE',
+        }"
+      >
+        {{ propsData.value }}
+      </div>
+      <div v-else>
+        {{ propsData.value }}
+      </div>
     </div>
     <div class="d-flex">
-      <div style="font-size: 16px">{{ propsData.text }}</div>
-      <div v-if="propsData.tooltip">
-        <v-icon>mdi-alpha-i-circle</v-icon>
+      <div
+        :style="{
+          'font-size': '16px',
+          'font-weight': '700',
+          color: propsData.textColor,
+        }"
+      >
+        <div
+          v-if="propsData.textClickable"
+          @click="textClick"
+          :style="{
+            cursor: pointer,
+            color: propsData.textColor || '#0000EE',
+          }"
+        >
+          {{ propsData.text }}
+        </div>
+        <div v-else>
+          {{ propsData.text }}
+        </div>
+      </div>
+      <div
+        v-if="propsData.tooltip"
+        @mouseover="showTooltipContent = true"
+        @mouseout="showTooltipContent = false"
+      >
+        <v-icon v-show="!showTooltipContent">mdi-alpha-i-circle</v-icon>
+        <div v-show="showTooltipContent">{{ propsData.tooltip }}</div>
       </div>
     </div>
   </v-container>
@@ -28,10 +63,18 @@ export default {
       type: Object,
     },
   },
+  data() {
+    return {
+      showTooltipContent: false,
+    };
+  },
   methods: {
     valueClick() {
-      if (this.propsData.clickable) {
-        this.$emit("valueClicked", this.propsData.value);
+      this.$emit("valueClicked", this.propsData.value);
+    },
+    textClick() {
+      if (this.propsData.textClickable) {
+        this.$emit("textClicked", this.propsData.text);
       }
     },
   },

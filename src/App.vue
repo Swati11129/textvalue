@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <TextValue :propsData="Data" @valueClicked="emitEvent($event)" />
+    <TextValue :propsData="Data" @valueClicked="valueClick($event)" @textClicked="textClick($event)" />
   </v-app>
 </template>
 
@@ -16,15 +16,21 @@ export default {
       Data: {
         value: '1,838',
         text: 'Low coverage: Under 75% code coverage',
-        color: 'red',
-        clickable:false,
-        tooltip:true,
+        valueColor: '',
+        textColor: 'green',
+        valueClickable: true,
+        textClickable:true,
+        valueFontSize:'30px',
+        tooltip:'tooltip info',
       }
     };
   },
   methods:{
-    emitEvent(capturedValue){
-      console.log(capturedValue);
+    valueClick(value){
+      console.log(value);
+    },
+    textClick(text){
+      console.log(text);
     }
   }
   

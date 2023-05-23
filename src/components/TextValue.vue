@@ -1,24 +1,24 @@
 <template>
   <v-container>
-    <div
+    <div class="d-flex"
       :style="{
-        fontSize: propsData.valueFontSize ||'30px',
+        fontSize: Data.valueFontSize ||'30px',
         'font-weight': '700',
-        color: propsData.valueColor,
+        color: Data.valueColor,
       }"
     >
       <div
-        v-if="propsData.valueClickable"
+        v-if="Data.valueClickable"
         @click="valueClick"
         :style="{
           cursor: 'pointer',
-          color: propsData.valueColor || '#0000EE',
+          color: Data.valueColor || '#0000EE',
         }"
       >
-        {{ propsData.value }}
+        {{ Data.value }}
       </div>
       <div v-else>
-        {{ propsData.value }}
+        {{ Data.value }}
       </div>
     </div>
     <div class="d-flex">
@@ -26,30 +26,31 @@
         :style="{
           'font-size': '16px',
           'font-weight': '700',
-          color: propsData.textColor,
+          color: Data.textColor,
         }"
       >
         <div
-          v-if="propsData.textClickable"
+          v-if="Data.textClickable"
           @click="textClick"
           :style="{
-            cursor: pointer,
-            color: propsData.textColor || '#0000EE',
+            cursor: 'pointer',
+            color: Data.textColor || '#0000EE',
           }"
         >
-          {{ propsData.text }}
+          {{ Data.text }}
         </div>
         <div v-else>
-          {{ propsData.text }}
+          {{ Data.text }}
         </div>
       </div>
       <div
-        v-if="propsData.tooltip"
+        v-if="Data.tooltip"
         @mouseover="showTooltipContent = true"
         @mouseout="showTooltipContent = false"
+        style="cursor:pointer"
       >
         <v-icon v-show="!showTooltipContent">mdi-alpha-i-circle</v-icon>
-        <div v-show="showTooltipContent">{{ propsData.tooltip }}</div>
+        <div v-show="showTooltipContent">{{ Data.tooltip }}</div>
       </div>
 
     </div>
@@ -60,7 +61,7 @@
 export default {
   name: "TextValue",
   props: {
-    propsData: {
+    Data: {
       type: Object,
     },
   },
@@ -71,12 +72,10 @@ export default {
   },
   methods: {
     valueClick() {
-      this.$emit("valueClicked", this.propsData.value);
+      this.$emit("valueClicked", this.Data.value);
     },
     textClick() {
-      if (this.propsData.textClickable) {
-        this.$emit("textClicked", this.propsData.text);
-      }
+        this.$emit("textClicked", this.Data.text);
     },
   },
 };

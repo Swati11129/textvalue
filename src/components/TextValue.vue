@@ -9,7 +9,7 @@
     >
       <div
         v-if="propsData.valueClickable"
-        @click="valueClick"
+        @click="emitValue"
       
         :style="{
           cursor: 'pointer',
@@ -32,7 +32,7 @@
       >
         <div
           v-if="propsData.textClickable"
-          @click="textClick"
+          @click="emitText"
           :style="{
             cursor: 'pointer',
             color: propsData.textColor || '#0000EE',
@@ -72,11 +72,11 @@ export default {
     };
   },
   methods: {
-    valueClick() {
-      this.$emit("valueClicked", this.propsData.value);
+    emitValue() {
+      this.$emit("valueClicked", this.propsData);
     },
-    textClick() {
-        this.$emit("textClicked", this.propsData.text);
+    emitText() {
+        this.$emit("textClicked", this.propsData);
     },
   },
 };

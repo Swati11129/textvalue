@@ -46,7 +46,7 @@
       <div
         v-if="Data.tooltip"
         @mouseover="showTooltipContent = true"
-        @mouseout="showTooltipContent = false"
+        @mouseout="showTooltipContent = false" 
         style="cursor:pointer"
       >
         <v-icon v-show="!showTooltipContent">mdi-alpha-i-circle</v-icon>

@@ -14,16 +14,16 @@ export default {
    data() {
     return {
       Data: {
-        value: '$ 4',
+        value: '7,864',
         text: 'Low coverage: Under 75% code coverage',
-        valueColor: '',
-        textColor: 'green',
+        valueColor: 'red',
+        textColor: '',
         valueClickable: true,
         textClickable:true,
         valueFontSize:'32px',
         tooltip:'tooltip info',
       }
-    };
+    }; 
   },
   methods:{
     valueClick(value){

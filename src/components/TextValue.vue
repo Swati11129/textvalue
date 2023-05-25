@@ -43,15 +43,12 @@
           {{ propsData.text }}
         </div>
       </div>
-      <div
-        v-if="propsData.tooltip"
-        @mouseover="showTooltipContent = true"
-        @mouseout="showTooltipContent = false" 
-      >
-        <v-icon v-show="!showTooltipContent">mdi-alert-circle-outline</v-icon>
-        <div v-show="showTooltipContent">{{ propsData.tooltip }}</div>
-      </div>
-
+      <v-tooltip v-model="showTooltip" top>
+        <template v-slot:activator="{ on }">
+          <v-icon v-on="on">mdi-alert-circle-outline</v-icon>
+        </template>
+             <div >{{ propsData.tooltip }}</div>
+        </v-tooltip>
     </div>
   </v-container>
 </template>
@@ -66,7 +63,7 @@ export default {
   },
   data() {
     return {
-      showTooltipContent: false,
+      showTooltip: false,
     };
   },
   methods: {

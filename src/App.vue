@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <TextValue :Data="Data" @valueClicked="valueClick($event)" @textClicked="textClick($event)" />
+    <TextValue :propsData="propsData" @valueClicked="valueClick($event)" @textClicked="textClick($event)" />
   </v-app>
 </template>
 
@@ -13,14 +13,14 @@ export default {
   },
    data() {
     return {
-      Data: {
+      propsData: {
         value: '7,864',
         text: 'Low coverage: Under 75% code coverage',
         valueColor: 'red',
         textColor: '',
         valueClickable: true,
         textClickable:true,
-        valueFontSize:'32px',
+        valueFontSize:'24px',
         tooltip:'tooltip info',
       }
     }; 

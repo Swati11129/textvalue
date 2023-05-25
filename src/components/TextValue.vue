@@ -1,54 +1,54 @@
 <template>
   <v-container>
-    <div class="d-flex"
+    <div
       :style="{
-        fontSize: propsData.valueFontSize ||'30px',
         'font-weight': '700',
-        color: propsData.valueColor,
+        fontSize: props.fontSize || '30px',
+        color: props.valueColor,
       }"
     >
-      <div
-        v-if="propsData.valueClickable"
-        @click="emitValue"
+      <span
+        v-if="props.valueClickable"
+        @click="handleClick"
         class="cursor"
         :style="{
-          color: propsData.valueColor || '#0000EE',
+          color: props.valueColor || '#0000EE',
         }"
       >
-        {{ propsData.value }}
-      </div>
-      <div v-else>
-        {{ propsData.value }}
-      </div>
+        {{ props.value }}
+      </span>
+      <span v-else>
+        {{ props.value }}
+      </span>
     </div>
-    <div class="d-flex">
-      <div
+
+    <div
+      :style="{
+        'font-size': '16px',
+        'font-weight': '700',
+        color: props.textColor,
+      }"
+    >
+      <span
+        v-if="props.textClickable"
+        @click="handleClick"
+        class="cursor"
         :style="{
-          'font-size': '16px',
-          'font-weight': '700',
-          color: propsData.textColor,
+          color: props.textColor || '#0000EE',
         }"
       >
-        <div
-          v-if="propsData.textClickable"
-          @click="emitText"
-          class="cursor"
-          :style="{
-            color: propsData.textColor || '#0000EE',
-          }"
-        >
-          {{ propsData.text }}
-        </div>
-        <div v-else>
-          {{ propsData.text }}
-        </div>
-      </div>
+        {{ props.text }}
+      </span>
+      <span v-else>
+        {{ props.text }}
+      </span>
+      
       <v-tooltip v-model="showTooltip" top>
         <template v-slot:activator="{ on }">
           <v-icon v-on="on">mdi-alert-circle-outline</v-icon>
         </template>
-             <div >{{ propsData.tooltip }}</div>
-        </v-tooltip>
+        <div>{{ props.tooltip }}</div>
+      </v-tooltip>
     </div>
   </v-container>
 </template>
@@ -57,7 +57,7 @@
 export default {
   name: "TextValue",
   props: {
-    propsData: {
+    props: {
       type: Object,
     },
   },
@@ -67,18 +67,15 @@ export default {
     };
   },
   methods: {
-    emitValue() {
-      this.$emit("valueClicked", this.propsData);
-    },
-    emitText() {
-        this.$emit("textClicked", this.propsData);
+    handleClick() {
+      this.$emit("valueClicked", this.props);
     },
   },
 };
 </script>
 
 <style>
-.cursor{
+.cursor {
   cursor: pointer;
 }
 </style>

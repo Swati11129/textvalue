@@ -10,9 +10,8 @@
       <div
         v-if="propsData.valueClickable"
         @click="emitValue"
-      
+        class="cursor"
         :style="{
-          cursor: 'pointer',
           color: propsData.valueColor || '#0000EE',
         }"
       >
@@ -33,8 +32,8 @@
         <div
           v-if="propsData.textClickable"
           @click="emitText"
+          class="cursor"
           :style="{
-            cursor: 'pointer',
             color: propsData.textColor || '#0000EE',
           }"
         >
@@ -48,7 +47,6 @@
         v-if="propsData.tooltip"
         @mouseover="showTooltipContent = true"
         @mouseout="showTooltipContent = false" 
-        style="cursor:pointer"
       >
         <v-icon v-show="!showTooltipContent">mdi-alert-circle-outline</v-icon>
         <div v-show="showTooltipContent">{{ propsData.tooltip }}</div>
@@ -81,3 +79,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.cursor{
+  cursor: pointer;
+}
+</style>

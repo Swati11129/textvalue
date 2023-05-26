@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <TextValue :props="props" @clicked="handleClick($event)" />
+    <TextValue :prop="prop" @clicked="handleClick($event)" />
   </v-app>
 </template>
 
@@ -13,7 +13,7 @@ export default {
   },
    data() {
     return {
-      props: {
+      prop: {
         value: '7,864',
         text: 'Low coverage: Under 75% code coverage',
         valueColor: 'red',

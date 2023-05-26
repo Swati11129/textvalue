@@ -3,22 +3,22 @@
     <div
       :style="{
         'font-weight': '700',
-        fontSize: props.fontSize || '30px',
-        color: props.valueColor,
+        fontSize: prop.fontSize || '30px',
+        color: prop.valueColor,
       }"
     >
       <span
-        v-if="props.valueClickable"
+        v-if="prop.valueClickable"
         @click="handleClick"
         class="cursor"
         :style="{
-          color: props.valueColor || '#0000EE',
+          color: prop.valueColor || '#0000EE',
         }"
       >
-        {{ props.value }}
+        {{ prop.value }}
       </span>
       <span v-else>
-        {{ props.value }}
+        {{ prop.value }}
       </span>
     </div>
 
@@ -26,28 +26,28 @@
       :style="{
         'font-size': '16px',
         'font-weight': '700',
-        color: props.textColor,
+        color: prop.textColor,
       }"
     >
       <span
-        v-if="props.textClickable"
+        v-if="prop.textClickable"
         @click="handleClick"
         class="cursor"
         :style="{
-          color: props.textColor || '#0000EE',
+          color: prop.textColor || '#0000EE',
         }"
       >
-        {{ props.text }}
+        {{ prop.text }}
       </span>
       <span v-else>
-        {{ props.text }}
+        {{ prop.text }}
       </span>
       
       <v-tooltip v-model="showTooltip" top>
         <template v-slot:activator="{ on }">
           <v-icon v-on="on">mdi-alert-circle-outline</v-icon>
         </template>
-        <div>{{ props.tooltip }}</div>
+        <div>{{ prop.tooltip }}</div>
       </v-tooltip>
     </div>
   </v-container>
@@ -57,7 +57,7 @@
 export default {
   name: "TextValue",
   props: {
-    props: {
+    prop: {
       type: Object,
     },
   },
@@ -68,7 +68,7 @@ export default {
   },
   methods: {
     handleClick() {
-      this.$emit("clicked", this.props);
+      this.$emit("clicked", this.prop);
     },
   },
 };

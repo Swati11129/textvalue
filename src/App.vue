@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <TextValue :props="props" @valueClicked="emitValue($event)" @textClicked="emitText($event)" />
+    <TextValue :props="props" @clicked="handleClick($event)" />
   </v-app>
 </template>
 
@@ -26,12 +26,9 @@ export default {
     }; 
   },
   methods:{
-    emitValue(value){
-      console.log(value);
-    },
-    emitText(text){
-      console.log(text);
-    }
+    handleClick(ele){
+      console.log(ele);
+    } 
   }
   
 };

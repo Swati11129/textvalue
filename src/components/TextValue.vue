@@ -68,7 +68,7 @@ export default {
   },
   methods: {
     handleClick() {
-      this.$emit("valueClicked", this.props);
+      this.$emit("clicked", this.props);
     },
   },
 };
